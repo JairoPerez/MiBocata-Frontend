@@ -1,26 +1,22 @@
-const emailInput = document.getElementById('email').value
-const passwordInput = document.getElementById('password').value
 const loginForm = document.getElementById('loginForm')
 const url = "http://localhost/Trabajo-Victor-Backend/swLogin.php"
 
-loginForm.addEventListener('click', peticionAjax)
-
+loginForm.addEventListener('submit', peticionAjax)
 
 function peticionAjax(event) {
     event.preventDefault()
 
-    json = {
+    const emailInput = document.getElementById('email').value
+    const passwordInput = document.getElementById('password').value
 
+    console.log(emailInput, passwordInput)
+
+    json = {
         action: "find",
         filter: [
-            {
-                email: emailInput
-            },
-            {
-                passwd: passwordInput
-            }
+            { email: emailInput },
+            { passwd: passwordInput }
         ]
-
     }
 
     fetch(url, {
@@ -33,7 +29,12 @@ function peticionAjax(event) {
         .then((json) => {
             if (json.success) {
                 alert(json.msg)
+            } else {
+                alert(json.msg)
             }
+        })
+        .catch((error) => {
+            console.error(error)
         })
 
 }
