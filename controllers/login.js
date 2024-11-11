@@ -1,5 +1,5 @@
 const loginForm = document.getElementById('loginForm')
-const url = "http://localhost/Trabajo-Victor-Backend/swLogin.php"
+const url = "http://localhost/MiBocata-Backend/swLogin.php"
 
 loginForm.addEventListener('submit', peticionAjax)
 
@@ -8,8 +8,6 @@ function peticionAjax(event) {
 
     const emailInput = document.getElementById('email').value
     const passwordInput = document.getElementById('password').value
-
-    console.log(emailInput, passwordInput)
 
     json = {
         action: "find",
@@ -28,7 +26,8 @@ function peticionAjax(event) {
         .then((respuesta) => respuesta.json())
         .then((json) => {
             if (json.success) {
-                alert(json.msg)
+                console.log(json.success)
+                location.href = "./seleccionBocadillos.html"
             } else {
                 alert(json.msg)
             }
